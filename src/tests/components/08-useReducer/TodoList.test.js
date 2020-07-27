@@ -1,0 +1,33 @@
+import React from "react";
+
+import "@testing-library/jest-dom";
+import { shallow } from "enzyme";
+import { TodoList } from "../../../components/08-useReducer/TodoList";
+import { demoTodos } from "../../fixtures/demoTodos";
+
+describe("Pruebas en componente <TodoList />", () => {
+  const handleToggle = jest.fn();
+  const handleDelete = jest.fn();
+
+  const wrapper = shallow(
+    <TodoList
+      todos={demoTodos}
+      handleToggle={handleToggle}
+      handleDelete={handleDelete}
+    />
+  );
+
+  test("Debe de renderizar el componente correctamente", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test("Debe de renderizar los todos que se envian en props ", () => {
+    expect(wrapper.find("TodoListItem").length).toBe(demoTodos.length);
+    expect(wrapper.find("TodoListItem").at(0).prop("handleToggle")).toEqual(
+      expect.any(Function)
+    );
+    expect(wrapper.find("TodoListItem").at(0).prop("handleDelete")).toEqual(
+      expect.any(Function)
+    );
+  });
+});
