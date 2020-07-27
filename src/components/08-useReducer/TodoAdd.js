@@ -26,7 +26,7 @@ export const TodoAdd = ({ handleAddTodo }) => {
     <>
       <h4>Agregar tarea</h4>
       <hr />
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           value={description}
           onChange={handleInputChange}
@@ -37,8 +37,8 @@ export const TodoAdd = ({ handleAddTodo }) => {
           autoComplete="false"
         />
         <button
+          type="submit"
           className="btn btn-outline-primary mt-1 btn-block"
-          onClick={handleSubmit}
         >
           Agregar
         </button>
